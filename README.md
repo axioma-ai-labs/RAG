@@ -62,7 +62,7 @@ Includes images and visual aids used in the documentation and notebooks.
 ## Setup and Configuration
 Before running the notebooks, ensure that you have the necessary environment variables configured as described in the notebooks. Don't forget to install packages from `requirements.txt`.
 
-## Work with Me
+## Work with us
 
 If you are interested in:
 
