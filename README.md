@@ -77,4 +77,4 @@ Feel free to reach out and share your story with us! We're just an email away.
 
 Feel free to fork this repository, contribute changes, or submit issues.
 
-Peace!
+Truly yours!
