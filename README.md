@@ -1,16 +1,19 @@
 # Retrieval Augmented Generation (RAG)
 
-This repository contains detailed documentation, example notebooks (as well as tips & tricks) for implementing Retrieval Augmented Generation (RAG) systems for various types of data using Python.
+This repository contains detailed documentation, example notebooks (as well as tips & tricks) for implementing Retrieval Augmented Generation (RAG) pipelines using Python.
+
+!["Self-querying Retriever"](/images/readme_img.jpeg)
 
 ## Notebooks Overview
 
 ### 0. [Tips & Tricks](0-tips-n-tricks)
-Tips & tricks on data processing, cleaning, chunking, and augmentation. It also highlights various approaches, accompanied by code snippets, for evaluating Retrieval-Augmented Generation (RAG) systems. Explore all the effective techniques and methods designed to enhance the accuracy of a RAG system.
+Tips & tricks on data processing, cleaning, chunking, and augmentation. It also highlights various approaches, accompanied by code snippets, for evaluating RAG pipelines. Explore all the effective techniques and methods designed to enhance the accuracy of a RAG system.
 
 **What you can find inside?**
 - **Table Processing**: Techniques for processing of complex tables from the PDF documents.
 - **RAG Evaluation**: Approaches for evaluation of precision, recall, faithfulness, etc. of your RAG system.
 - **Query Extension**: Methodologies for enhanced retrieval (e.g., re-reanking, query extensions, etc.)
+- **Azure Indexing**: Two different approaches for data ingestion in Azure AI Search
 
 ### 1. [RAG Contextual Compression](1-rag-contextual-compression)
 Methods to compress context for RAG systems to improve performance and accuracy and minimize costs.
@@ -57,7 +60,6 @@ Contains sample datasets and scripts for data preprocessing used in the example 
 Includes images and visual aids used in the documentation and notebooks.
 
 ## Setup and Configuration
-
 Before running the notebooks, ensure that you have the necessary environment variables configured as described in the notebooks. Don't forget to install packages from `requirements.txt`.
 
 ## Work with Me
@@ -67,12 +69,9 @@ If you are interested in:
 - Developing custom, production-ready RAG pipelines
 - Creating unique chatbot & assistant solutions
 - Integrating AI into various aspects of your business operations
-- Building prototypes or proofs of concept to validate your next groundbreaking idea
+- Building prototypes or proofs of concepts to validate your next groundbreaking idea
 
-🚩 Then go visit my [services page](https://iamvladyashin.com/services) and witness the magic happen.
-
-Feel free to reach out and share your story with me! I'm just an email away.
-
+Feel free to reach out and share your story with us! We're just an email away.
 
 ## Contributions and Issues
 

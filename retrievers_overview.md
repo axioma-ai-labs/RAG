@@ -1,1 +1,0 @@
-# One day here'll be an overview of all the retriever types and example use cases for them

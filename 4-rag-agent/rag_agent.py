@@ -21,14 +21,11 @@ class RAGAgent:
     """
     RAG Agent with semantic chunking, document relevance grading and re-runking w/ RRF
     """
-
     def __init__(self):
         self.init_components()
 
     def init_components(self):
-
         """Initializes all necessary components for the agent."""
-
         self.text_splitter = NLTKTextSplitter()
         self.embedding_model = SentenceTransformerEmbeddings(model_name="thenlper/gte-large")
         self.output_parser = JsonOutputParser()
@@ -41,9 +38,7 @@ class RAGAgent:
         self.llama = ChatOllama(model="llama3", format="json", temperature=0)
 
     def load_documents(self, data_path: str) -> List[str]:
-
         """Loads and prepares PDF documents from a directory."""
-
         try:
             pdf_files = [f for f in os.listdir(data_path) if f.endswith('.pdf')]
             docs = [PyPDFLoader(os.path.join(data_path, file)).load() for file in pdf_files]
@@ -54,9 +49,7 @@ class RAGAgent:
             return []
 
     def preprocess_documents(self, docs: List[str]) -> List[str]:
-
         """Preprocesses and chunks documents into manageable parts."""
-
         try:
             docs_list = [item for sublist in docs for item in sublist]
             chunks = self.text_splitter.split_documents(docs_list)
@@ -67,9 +60,7 @@ class RAGAgent:
             return []
 
     def setup_vector_store(self, chunks: List[str]) -> Optional[Chroma]:
-
         """Initializes and returns a ChromaDB vector store with documents and embedding model."""
-
         try:
             db = self.vector_store.from_documents(documents=chunks, embedding=self.embedding_model, collection_metadata={"hnsw:space": "cosine"})
             logger.info("Vector store successfully created")
@@ -79,9 +70,7 @@ class RAGAgent:
             return None
 
     def retrieve_documents(self, db, user_query: str) -> List[str]: 
-
         """Retrieves documents relevant to the given user query."""
-
         try:
             retriever = db.as_retriever(search_type="mmr")
             documents = retriever.invoke(user_query)
@@ -92,9 +81,7 @@ class RAGAgent:
             return []
 
     def grade_document_relevance(self, user_query: str, documents: List[str]) -> List[str]: 
-
         """Determines the relevance of each document to the user query."""
-
         prompt = PromptTemplate(
             template="""You are a grader assessing relevance of a retrieved document to a user question. If the document contains keywords related to the user question, 
             grade it as relevant. It does not need to be a stringent test. The goal is to filter out erroneous retrievals. \n
@@ -122,9 +109,7 @@ class RAGAgent:
         return relevant_docs
 
     def generate_similar_search_queries(self, user_query: str, documents: List[str]) -> List[str]:
-
         """Generates similar search queries based on the provided user query and documents."""
-
         message = HumanMessage(
             content=f""" 
                 You are a helpful search assistant. Your task is to generate four similar search queries in relation to the provided documents based on a single input query.
@@ -144,9 +129,7 @@ class RAGAgent:
             return []
 
     def simulate_search_results(self, db, queries: List[str]) -> Dict[str, List[Tuple[str, float]]]:
-
         """Simulates search results for given queries using a vector store."""
-
         simulated_results = {}
         try:
             for query in queries:
@@ -158,9 +141,7 @@ class RAGAgent:
         return simulated_results
 
     def reciprocal_rank_fusion(self, search_results_dict: Dict[str, List[Tuple[str, float]]], k: int = 5) -> Dict[str, Tuple[float, str]]:
-
         """Applies reciprocal rank fusion to re-rank search results."""
-
         fused_scores = {}
         try:
             for query, doc_scores in search_results_dict.items():
@@ -178,9 +159,7 @@ class RAGAgent:
         return reranked_results
 
     def generate_answer(self, reranked_results: Dict[str, Tuple[float, str]], user_query: str, top_n_results: int = 3):
-
         """Generates an answer to the user query using the top N reranked results."""
-
         prompt = PromptTemplate(
             template="""
                 You are an assistant for question-answering tasks. 
